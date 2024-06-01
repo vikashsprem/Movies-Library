@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Search.css';
-import { useState } from 'react';
-import { useEffect } from 'react';
+
 
 const Search = ({ movies }) => {
 
@@ -13,7 +12,11 @@ const Search = ({ movies }) => {
     }, [movies]);
 
     if (!movieDetails) {
-        return null;
+        return <h1 className='m-5 text-2xl text-gray-200 font-extralight'>Please enter the keywords to search movies</h1>;
+    }
+    else if (movieDetails.Response === 'False') {
+        console.log('No movie found');
+        return <h1 className='m-5 text-2xl text-gray-200 font-extralight'>No movie found, Please try different keywords</h1>;
     }
 
     return (
