@@ -62,9 +62,9 @@ export default function ShareList() {
     }
 
     return (
-        <div className="px-3">
+        <div className="flex justify-center flex-wrap gap-5">
             {moviesList.map((list, index) => (
-                <div key={index} className="ml-5 w-2/3 rounded overflow-hidden shadow-lg my-4 bg-slate-500">
+                <div key={index} className="flex justify-between w-3/4 rounded overflow-hidden shadow-lg my-4 bg-slate-500">
                     <div className="flex px-4 py-3 gap-5">
                         <img src={list.data.Poster} alt="logo" style={{ maxWidth: '80px' }} />
                         <div>
