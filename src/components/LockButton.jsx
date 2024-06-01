@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../services/firebase';
 
 const LockButton = () => {
     const [isChecked, setIsChecked] = useState(false);
+    const { currentUser } = useAuth();
+
+    useEffect(() => {
+        const checkPublicOrPrivate = async () => {
+            const userAccessDoc = await getDoc(doc(db, "userAccess", currentUser.uid));
+            const currentAccess = userAccessDoc.data().access;
+            console.log("Current access", currentAccess)
+            setIsChecked(currentAccess);
+        }
+        checkPublicOrPrivate();
+    }, [currentUser.uid]);
 
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
