@@ -1,33 +1,60 @@
-import { useState, useEffect } from 'react';
-import { searchMovies } from '../services/omdb';
+import React from 'react';
+import './Search.css';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-export default function Search({ searchTerm }) {
-  const [movies, setMovies] = useState([]);
+const Search = ({ movies }) => {
 
-  useEffect(() => {
-    if (searchTerm) {
-      searchMovies(searchTerm).then(response => {
-        setMovies(response.data.Search);
-      }).catch(error => {
-        console.error("Error fetching movies:", error);
-      });
+    const [movieDetails, setMovieDetails] = useState(null);
+    useEffect(() => {
+        if (movies) {
+            setMovieDetails(movies);
+        }
+    }, [movies]);
+
+    if (!movieDetails) {
+        return null;
     }
-  }, [searchTerm]);
 
-  return (
-    <div className="flex flex-wrap">
-      {movies.map(movie => (
-        <div key={movie.imdbID} className="max-w-sm rounded overflow-hidden shadow-lg m-2">
-          <img className="w-full" src={movie.Poster} alt={movie.Title} />
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{movie.Title}</div>
-            <p className="text-gray-700 text-base">{movie.Year}</p>
-          </div>
-          <div className="px-6 pt-4 pb-2">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add to List</button>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+    return (
+        <>
+            <div className="search-container">
+                <div className="search-header">
+                    <h1 className="title">{movieDetails.Title}</h1>
+                </div>
+                <div className='mb-2'>
+                    <span className="year">{movieDetails.Released} </span>
+                    <span> • </span>
+                    <span className="runtime">{movieDetails.Rated}</span>
+                    <span> • </span>
+                    <span className="runtime">{movieDetails.Runtime}</span>
+                </div>
+                <div className="poster-section">
+                    <div className='md:w-1/3 w-full'>
+                        <img className="poster" src={movieDetails.Poster} alt={movieDetails.Title} />
+                        <div className="poster-details flex gap-1">
+                            <p className='details-item'>{movieDetails.Language}</p>
+                            <p className='details-item'>{movieDetails.Genre}</p>
+                            <p className='details-item'><strong>Awards: </strong> {movieDetails.Awards}</p>
+                        </div>
+                    </div>
+
+                    <div className="details-section">
+                        <div className="rating-section">
+                            <span className="imdb-rating">{movieDetails.imdbRating}/10</span>
+                            <span className="votes">({movieDetails.imdbVotes} votes)</span>
+                        </div>
+                        <p className="plot">{movieDetails.Plot}</p>
+                        <div className="details">
+                            <p><strong>Director:</strong> {movieDetails.Director}</p>
+                            <p><strong>Writers:</strong> {movieDetails.Writer}</p>
+                            <p><strong>Stars:</strong> {movieDetails.Actors}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Search;

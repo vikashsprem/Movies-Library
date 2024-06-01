@@ -1,0 +1,145 @@
+.search-container {
+    background-color: #0b0a0a;
+    background-image: linear-gradient(rgb(30, 34, 38), rgb(5, 8, 13));
+    color: #fff;
+    padding: 20px;
+    width: 100%;
+    height: fit-content;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.search-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.year,
+.runtime {
+    font-size: 1rem;
+    color: #bbb;
+}
+
+.poster-section {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.poster-details {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.poster {
+    width: 80%;
+    border-radius: 8px;
+    margin-bottom: 7px;
+}
+
+.details-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.rating-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.imdb-rating {
+    font-size: 1.5rem;
+    color: #ffcc00;
+}
+
+.votes {
+    font-size: 1rem;
+    color: #bbb;
+}
+
+.plot {
+    margin-bottom: 20px;
+}
+
+.details p {
+    margin: 5px 0;
+    padding: 7px 0;
+    border-bottom: solid 1px #333;
+    width: 90%;
+}
+
+.details-item {
+    width: fit-content;
+    border: gray 1px solid;
+    border-radius: 5em;
+    margin-bottom: 5px;
+    padding: 2px 10px 2px 10px;
+}
+
+/* component.css */
+.scroll-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: auto;
+    background-color: #0b0a0a;
+    background-image: linear-gradient(rgb(30, 34, 38), rgb(5, 8, 13));
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .poster-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .poster {
+        width: 100%;
+    }
+
+    .details p {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .rating-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .imdb-rating {
+        font-size: 1.2rem;
+    }
+
+    .votes {
+        font-size: 0.9rem;
+    }
+}

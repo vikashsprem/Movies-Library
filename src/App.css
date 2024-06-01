@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(18, 18, 18);
+    background-image: linear-gradient(rgb(51, 58, 64), rgb(17, 24, 39));
+    height: 130vh;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    body {
+        height: 250vh;
+    }
+}
