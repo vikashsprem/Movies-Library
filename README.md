@@ -2,7 +2,7 @@
 
 This project is a movie library web application built using JavaScript, React with Vite, and Tailwind CSS. It leverages Firebase for authentication and Firestore for the database. The application features user authentication, a movie search option using the OMDB API, and allows users to create and manage movie lists. Users can make these lists public or private, with public lists accessible to anyone with the link.
 
-* Click here to see the live deployed page: [Link](https://example-deployed-app.netlify.app/)
+* Click here to see the live deployed page: [Link](https://movies-lib-vikash.vercel.app/)
 * Click here to see the source code: [GitHub Repository](https://github.com/vikashsprem/Movies-Library.git)
 
 ## Prerequisites
