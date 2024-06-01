@@ -36,7 +36,7 @@ export default function Register() {
   }
 
   return (
-    <div className="auth-container">
+    <div className="auth-container px-3">
       <div className="auth-content">
         <h2 className="auth-title">Welcome to SignUp</h2>
         {error && <div className="error-message">{error}</div>}

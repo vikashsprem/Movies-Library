@@ -29,7 +29,7 @@ export default function Auth() {
   }
 
   return (
-    <div className="auth-container">
+    <div className="auth-container px-3">
       <div className="auth-content">
         <h2 className="auth-title">SignIn</h2>
         {error && <div className="error-message">{error}</div>}
