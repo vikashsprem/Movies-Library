@@ -82,8 +82,15 @@ service cloud.firestore {
     }
     
     match /userAccess/{userAccessId} {
-      // Allow read and write if the user is authenticated and is accessing their own document
-      allow read, write: if request.auth != null && resource.data.user == request.auth.uid;
+      // Allow read if the user is authenticated and the document belongs to the user
+  		allow read: if request.auth != null && resource.data.user == request.auth.uid;
+
+      // Allow write if the user is authenticated and:
+      // - the document does not exist (to create it), or
+      // - the document exists and belongs to the authenticated user (to update it)
+      allow write: if request.auth != null && (
+        !exists(/databases/$(database)/documents/userAccess/$(userAccessId)) && request.resource.data.user == request.auth.uid ||
+        resource.data.user == request.auth.uid);
     }
     
     // Additional rules for other collections or documents can be added here

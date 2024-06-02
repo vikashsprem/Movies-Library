@@ -79,24 +79,25 @@ export default function Home() {
   // make the list of movies public and private
   const handleShare = async () => {
     if (currentUser) {
-      const userAccessDoc = await getDoc(doc(db, "userAccess", currentUser.uid));
-      if (userAccessDoc.exists()) {
-        const currentAccess = userAccessDoc.data().access;
-        updateUserAccess(currentUser.uid, !currentAccess);
-        if (currentAccess) {
-          setNotificationMessage('Your favourite list is now private!');
-          setNotificationKey(prevKey => prevKey + 1);
-        }
-        else {
-          setNotificationMessage('Your favourite list is now public!');
-          setNotificationKey(prevKey => prevKey + 1);
+      try {
+        const userAccessDoc = await getDoc(doc(db, "userAccess", currentUser.uid));
+        if (userAccessDoc.exists()) {
+          const currentAccess = userAccessDoc.data().access;
+          updateUserAccess(currentUser.uid, !currentAccess);
+          if (currentAccess) {
+            setNotificationMessage('Your favourite list is now private!');
+            setNotificationKey(prevKey => prevKey + 1);
+          }
+          else {
+            setNotificationMessage('Your favourite list is now public!');
+            setNotificationKey(prevKey => prevKey + 1);
+          }
         }
       }
-      else {
+      catch (error) {
         manageAccess(currentUser.uid, true);
         setNotificationMessage('Your favourite list is now public!');
         setNotificationKey(prevKey => prevKey + 1);
-        console.log("manage access created successfully!")
       }
     }
   };
@@ -181,7 +182,7 @@ export default function Home() {
                   <button className='ml-10 text-sm' onClick={() => {
                     setNotificationMessage('Coppid to clipboard successfully!');
                     setNotificationKey(prevKey => prevKey + 1);
-                  }}><img src={copyImg} alt="logo" style={{ minWidth:'22px', maxWidth:'22px' }} /></button>
+                  }}><img src={copyImg} alt="logo" style={{ minWidth: '22px', maxWidth: '22px' }} /></button>
                 </CopyToClipboard>
               </div>
             </div>
