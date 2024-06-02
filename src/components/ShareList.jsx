@@ -57,24 +57,27 @@ export default function ShareList() {
         fetchAllMovieDetails();
     }, [users]);
 
-    if (!moviesList) {
-        return null;
+    if (!moviesList || !moviesList.length) {
+        return <div className="h-screen"><div className="text-center text-2xl font-semibold mt-5 bg-slate-400 p-2 m-3">No movies shared yet! Or Wait for loading...</div></div>;
     }
 
     return (
-        <div className="flex justify-center flex-wrap gap-5">
-            {moviesList.map((list, index) => (
-                <div key={index} className="flex justify-between w-3/4 rounded overflow-hidden shadow-lg my-4 bg-slate-500">
-                    <div className="flex px-4 py-3 gap-5">
-                        <img src={list.data.Poster} alt="logo" style={{ maxWidth: '80px' }} />
-                        <div>
-                            <div className="font-bold text-xl mb-2">{list.data.Title}</div>
-                            <p className="text-gray-700 font-semibold text-base">Released: {list.data.Released}</p>
-                            <p className="text-gray-700 font-semibold text-base">IMDB: {list.data.imdbRating}</p>
+        <div className="min-h-screen max-h-fit">
+            <h1 className="text-center text-2xl font-semibold mt-5 bg-slate-400 p-2 m-3">Shared Movies</h1>
+            <div className="flex justify-center flex-wrap gap-5">
+                {moviesList.map((list, index) => (
+                    <div key={index} className="flex justify-between w-3/4 rounded overflow-hidden shadow-lg my-4 bg-slate-500">
+                        <div className="flex px-4 py-3 gap-5">
+                            <img src={list.data.Poster} alt="logo" style={{ maxWidth: '80px' }} />
+                            <div>
+                                <div className="font-bold text-xl mb-2">{list.data.Title}</div>
+                                <p className="text-gray-700 font-semibold text-base">Released: {list.data.Released}</p>
+                                <p className="text-gray-700 font-semibold text-base">IMDB: {list.data.imdbRating}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 }
