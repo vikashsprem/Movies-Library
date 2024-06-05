@@ -8,7 +8,7 @@ import Search from './Search';
 import MovieList from './MovieList';
 import Notification from './Notification';
 import lib from '../assets/library_add.svg';
-import copyImg from '../assets/copy.svg';
+import copyImg from '../assets/share.png';
 import './loader.css';
 import CryptoJS, { enc } from 'crypto-js';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
